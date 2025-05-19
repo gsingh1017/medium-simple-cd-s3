@@ -33,3 +33,10 @@ resource "aws_s3_bucket_website_configuration" "website_configuration" {
     suffix = "index.html"
   }
 }
+
+# S3 Bucket ACL
+resource "aws_s3_bucket_acl" "nextjs_bucket_acl" {
+
+  bucket = aws_s3_bucket.static_site.id
+  acl = "public-read"
+}
