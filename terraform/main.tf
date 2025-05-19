@@ -1,7 +1,8 @@
 #  Provider
 provider "aws" {
-  region = "ca-central-1" # change region
+  region = "ca-central-1" # change region 
 }
+
 
 #  S3 Bucket
 resource "aws_s3_bucket" "static_site" {
@@ -35,8 +36,18 @@ resource "aws_s3_bucket_website_configuration" "website_configuration" {
 }
 
 # S3 Bucket ACL
-resource "aws_s3_bucket_acl" "nextjs_bucket_acl" {
+resource "aws_s3_bucket_acl" "bucket_acl" {
 
   bucket = aws_s3_bucket.static_site.id
   acl = "public-read"
+}
+
+# S3 Remove Public Access Block
+resource "aws_s3_bucket_public_access_block" "public_access_block" {
+  bucket = aws_s3_bucket.static_site.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
 }
