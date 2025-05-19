@@ -5,7 +5,7 @@ provider "aws" {
 
 #  S3 Bucket
 resource "aws_s3_bucket" "static_site" {
-  bucket = "my-terraform-site-bucket-123456" # make bucket name unique
+  bucket = "gs-medium-example-bucket" # make bucket name unique
 }
 
 #  S3 Bucket Policy
